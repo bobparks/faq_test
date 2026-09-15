@@ -1,1 +1,538 @@
 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://appinventor.mit.edu/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://appinventor.mit.edu/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link href="https://appinventor.mit.edu/css/fonts.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://appinventor.mit.edu/mit_app_inventor.css?foo=3838">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500&family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700;8..144,800;8..144,900;8..144,1000&display=swap" rel="stylesheet">
+    <title>Frequently Asked Questions</title>
+    <style>
+/* Define .donate-btn & .search-btn for redfined button-like anchors below. */
+nav a.donate-btn {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 110px;
+  height: 45px;
+  margin-right: 20px;
+  padding: 0;
+  font-weight: 700;
+  line-height: 45px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+nav a.search-btn {
+  display: inline-flex;
+  box-sizing: border-box;
+  width: 60px;
+  height: 45px;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: #F88D34;
+  border-radius: .75rem;
+  vertical-align: middle;
+}
+
+nav a.search-btn img {
+  display: block;
+  width: 30px;
+  height: auto;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+/* TODO: spacing specific <li>s in id="cell-phones-have" elements */
+.panel > ul > li > b {
+  display: inline-block;
+  padding: 10px 0;
+}
+
+/* MOVED FROM BELOW */
+
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+  background-color: #eee;
+  border-radius: .75rem;
+  color: #444;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked or the mouse is hovered (add the .active class with JS). */
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 1rem 1rem 0 2rem;
+  margin-left: 5%;
+  margin-bottom: 2rem;
+  background-color: white;
+  display: none;
+  overflow: hidden;
+}
+
+.display-text {
+  font-weight:bold; 
+  font-family: 'Roboto Flex', sans-serif; 
+  color:#92267c; 
+  font-size: 30px;
+  padding-top: 3rem;
+  padding-bottom: .3rem;
+}
+
+/* TODO: 'a' is not a descriptive class name */
+div.a {
+  font-size: 20px;
+  margin: 0% 10% 0% 20%;
+  padding-bottom: 2em;
+}
+
+    </style>
+
+    <script>
+
+      var gotoappinventor = function() {
+        var referrer = document.location.pathname;
+        var patt = /.*hour-of-code.*/;
+
+        if (referrer.match(patt)) {
+          window.open("http://code.appinventor.mit.edu/", "new");
+        } else {
+          window.open("http://ai2.appinventor.mit.edu/", "new");
+        }
+      }
+
+      function showPanelFromHash() {
+        /**
+         * For <button>s of the .accordion class with an id equal to 
+         * the location.hash, make the <button> .active, display the 
+         * nextElementSibling if it is of the .panel class, and 
+         * scrollIntoView the button.
+         */
+        var id = window.location.hash;
+
+        if (!id) return;
+
+        let button = document.querySelector(id);
+
+        if (button && button.classList.contains("accordion")) {
+
+          button.classList.add("active");
+
+          var panel = button.nextElementSibling;
+
+          if (panel && panel.classList.contains("panel")) {
+            panel.style.display = "block";
+            button.scrollIntoView();
+          }
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function() {
+        /* Add this function to all .accordion class elements. */
+
+        for (const button of document.querySelectorAll(".accordion")) {
+          button.addEventListener("click", function() {
+            /**
+             * Toggle .active class for this and toggle style.display 
+             * between "none" & "block" for the nextElementSibling.
+             */
+            this.classList.toggle("active");
+
+            var panel = this.nextElementSibling;
+
+            /* Toggle style.display between "none" & "block" for 
+             * this.nextElementSibling panel.
+             * NOTE: no check that panel is of the .panel class
+             */
+            if (panel.style.display === "block") {
+              panel.style.display = "none";
+            } else {
+              panel.style.display = "block";
+            }
+          });
+        }
+
+        showPanelFromHash();  /* do once on DOMContentLoaded */
+
+      });
+
+      window.addEventListener("hashchange", showPanelFromHash);
+
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X8JVR7MNWD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-X8JVR7MNWD');
+    </script>
+  </head>
+  <body class="mit_app_inventor"><div style="padding: 4px;"></div>
+<nav class="navbar navbar-expand-xl navbar-light">
+  <div style="padding-left: 10px;"></div>
+  <a class="navbar-brand" href="https://appinventor.mit.edu/">
+    <div style="height:1%">
+  <img src="https://appinventor.mit.edu/images/logo.png" style="height: 70px;" alt="App Inventor Logo"></div></a>
+
+  <button type="button" class="btn create-btn" style="width: 150px; height: 45px; font-weight: 700;" onclick="gotoappinventor();">Create Apps!</button>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
+      aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle Navigation" style="background-color: #F88D34; color: #FFFFFF; border-radius: .75rem;">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarContent" style="min-width: 300px">
+
+    <ul class="navbar-nav" style="margin-left: auto; margin-right: auto;">
+
+    <li class="nav-item dropdown">
+      <div class="mobile-spacer"></div>
+    <a class="nav-link" href="http://example.com" data-toggle="dropdown" style="border-radius: .75rem;" aria-haspopup="true" aria-expanded="false">
+       About  </a>
+      
+    <div class="dropdown-menu" style="background-color: #f4dcc9; border-radius: .75rem; font-weight: 400; font-family: 'Poppins', sans-serif; font-size: 15px;">
+    <a class="dropdown-item" href="/explore/ai2/beginner-videos">Get Started</a>
+      <a class="dropdown-item" href="/about-us">About App Inventor</a>
+      <a class="dropdown-item" href="/ios_tips">iOS</a>
+      <a class="dropdown-item" href="/FAQ">FAQ</a>
+      <a class="dropdown-item" href="/explore/our-team">Our Team</a>
+      <a class="dropdown-item" href="/about/termsofservice" target="_blank">Terms of Service</a>
+      <a class="dropdown-item" href="/ai2/ReleaseNotes">Release Notes</a>
+    </div>
+    </li>
+    
+    <li class="nav-item dropdown">
+      <div class="mobile-spacer"></div>
+    <a class="nav-link" href="http://example.com" data-toggle="dropdown" style="border-radius: .75rem;" aria-haspopup="true" aria-expanded="false">
+      Learning  </a>
+      
+    <div class="dropdown-menu" style="background-color: #f4dcc9; border-radius: .75rem; font-weight: 400; font-family: 'Poppins', sans-serif; font-size: 15px;">
+      <a class="dropdown-item" href="/explore/teach">Teach</a>
+      <a class="dropdown-item" href="/explore/ai2/tutorials">Tutorials</a>
+      <a class="dropdown-item" href="/explore/hour-of-code">Hour of Code</a>
+      <a class="dropdown-item" href="/explore/ai-with-mit-app-inventor">AI with App Inventor</a>
+      <a class="dropdown-item" href="/explore/ai2/data_science_unit">Data Science</a>
+      <a class="dropdown-item" href="/explore/books">Books</a>
+  </div>
+    </li>
+
+    <li class="nav-item dropdown">  <div class="mobile-spacer"></div>
+    <a class="nav-link" href="/news" data-toggle="dropdown" style="border-radius: .75rem;" aria-haspopup="true" aria-expanded="false">
+      News & Events  </a>
+    
+    <div class="dropdown-menu" style="background-color: #f4dcc9; border-radius: .75rem; font-weight: 400; font-family: 'Poppins', sans-serif; font-size: 15px;">
+      <a class="dropdown-item" href="https://www.appinventorfoundation.org/overview" target="_blank">Appathon</a>
+      <a class="dropdown-item" href="/explore/news">In the News</a>
+      <a class="dropdown-item" href="/explore/blog">Team Blog</a>
+      <a class="dropdown-item" href="/explore/events">Events</a>
+      <a class="dropdown-item" href="/explore/stories">Stories from the Field</a>
+  </div>
+    </li>
+
+    <li class="nav-item dropdown"><div class="mobile-spacer"></div>
+      <a class="nav-link" href="/involved" data-toggle="dropdown" style="border-radius: .75rem;" aria-haspopup="true" aria-expanded="false">
+        Get Involved</a>
+        
+      <div class="dropdown-menu" style="background-color: #f4dcc9; border-radius: .75rem; font-weight: 400; font-family: 'Poppins', sans-serif; font-size: 15px;">
+        <a class="dropdown-item" href="https://docs.google.com/document/d/e/2PACX-1vTPfdHjhGAqRGZ0dwNrL0AEwQI7nlPHx9dBaw8MbuFHIGlJvkC8apRoiPJKQJvkkQOITPuoyb8lRUtt/pub" target="_blank">10 Ways to Get Involved!</a>
+        <a class="dropdown-item" href="https://community.appinventor.mit.edu" target="_blank">Support and Community</a>
+        <a class="dropdown-item" href="/giving_to_App_Inventor.html">Contribute to App Inventor</a>
+        <a class="dropdown-item" href="https://github.com/mit-cml/appinventor-sources" target="_blank">Open Source Information</a>
+    </div>
+      </li>
+
+    <li class="nav-item dropdown"><div class="mobile-spacer"></div>
+    <a class="nav-link" href="/explore/resources" data-toggle="dropdown" style="border-radius: .75rem;" aria-haspopup="true" aria-expanded="false">
+      Resources</a> 
+    <div class="dropdown-menu" style="background-color: #f4dcc9; border-radius: .75rem; font-weight: 400; font-family: 'Poppins', sans-serif; font-size: 15px;">
+      <a class="dropdown-item" href="/explore/foundation">App Inventor Foundation</a>
+      <a class="dropdown-item" href="/explore/ai2/beginner-videos">Get Started</a>
+      <a class="dropdown-item" href="/explore/content/system-requirements">System Requirements</a>
+      <a class="dropdown-item" href="/explore/library">Documentation</a>
+      <a class="dropdown-item" href="https://community.appinventor.mit.edu" target="_blank">Support and Community</a>
+      <a class="dropdown-item" href="/explore/research">Research</a>
+  
+  </div>
+  <div class="mobile-spacer"></div>
+    </li></ul>
+
+      <a href="/giving_to_App_Inventor.html" class="btn donate-btn">Donate</a>
+
+      <a href="/search.html" class="btn search-btn">
+        <img src="https://appinventor.mit.edu/images/landing_page_assets/magnifier.png"
+             alt="Search Engine for the App Inventor Site">
+      </a>
+      <div style="padding-right: 4px;"></div>
+
+  </div>
+</nav>
+<div style="padding: 4px;"></div><div class="default-page">
+            <div class="header">
+          <h1 class="font-weight-bold text-center offset-xl-2 col-xl-8"
+                    style="color: white;">Frequently Asked Questions</h1>
+            </div>
+            <div class="container-fluid">
+
+  <!-- FAQ -->
+
+  <div class="a">
+
+    <div class="display-text">General Questions</div> 
+
+    <button class="accordion" id="what-is-app">What is App Inventor?</button>
+    <div class="panel">
+      <p>MIT App Inventor is a <a href="https://ai2.appinventor.mit.edu/" target="_blank"> free, web-based platform</a> for creating, testing, and sharing mobile apps. Code almost any Android and iOS app with App Inventor using a simple, intuitive, block-based programming language that anyone can learn. 
+      <p>The best way to start? Watch <a href="https://youtu.be/eSvtXWpZ6os" target="_blank">  this overview video</a>, then jump right in with a <a href="explore/ai2/tutorials" target="_blank">tutorial</a>.
+    </div>
+
+    <button class="accordion" id="what-can-it">What can it do?</button>
+    <div class="panel">
+      <p>You can build apps that: 
+      <ul>
+        <li> Play games with graphics, sounds, and interactivity</li>
+        <li>Use artificial intelligence (AI) on images, sounds, and text</li>
+        <li>Capture and process user surveys and charts</li>
+        <li>Navigate maps much like the apps you already use on your smartphone</li>
+        <li>Monitor sensors you place around your home or office</li>
+        <li>Activate internet-connected devices, and many other things </li>
+      </ul>
+    <p>Once you finish building your app, send it to friends, family, or co-workers to test on App Inventor or package it up like any other commercial app. (Learn more about   <a href="/explore/ai2/share">sharing</a> and <a href="/explore/ai2/build">installing</a> apps.) Some app builders even sell their apps online! 
+    </div>
+
+    <button class="accordion" id="how-many-students">How many students, teachers, and others use App Inventor?</button> 
+      <div class="panel">
+        <p>Over 24 million people code their own apps with App Inventor. Our 2025 User Survey shows that in one month, coders came from over 11,000 schools globally in over 200 countries/regions and over 900 US schools in 50 states. Users are 84.9% students, 7.3% teachers, and 7.8% outside the education field. 
+    </div>
+
+    <button class="accordion" id="what-do-i">What do I need? </button>
+    <div class="panel">
+      <p>All you need is a computer with internet, a mobile device like a smartphone or tablet, and our free App Inventor Companion app (<a href="https://apple.co/30kwvP2" target="_blank">iOS</a> and <a href="https://play.google.com/store/apps/details?id=edu.mit.appinventor.aicompanion3&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" target="_blank">Android</a>), which helps you test as you go along. (There are also ways to build apps  <a href="explore/ai2/setup-emulator" target="_blank">without a smartphone or tablet</a>).
+    </div>
+
+    <button class="accordion" id="whats-the-big">What's the big deal about apps?</button> 
+    <div class="panel">
+      <p>Software for smartphones and other mobile devices can address real-world problems globally. In parts of the world, mobile devices are more readily available than laptops. Some of the recent apps built for our <a href="https://appathon.appinventor.mit.edu/results" target="_blank">annual app-building contest</a> use artificial intelligence to promote climate action or use data science to help fight food insecurity. 
+    </div>
+
+    <button class="accordion" id="can-i-make">Can I make an app in MIT App Inventor without any coding experience? </button>
+    <div class="panel">
+      <p>Absolutely! Many aspiring app inventors have never coded before. A good first step is to try one of the <a href="explore/hour-of-code" target="_blank">Hour of Code</a> tutorials. 
+    </div>
+
+    <button class="accordion" id="is-this-real">Is this real coding?</button> 
+    <div class="panel">
+      <p>Over a million people from ages 4 to 84 (and more) use App Inventor every month to bring their app ideas to life. Many engineers and research scientists — who typically use complex programming languages like Java, Python, and Swift — turn to App Inventor to fast-track powerful apps for research studies (<a href="https://link.springer.com/article/10.1007/s11277-018-6110-x" target="_blank">here</a> or <a href="https://www.irjet.net/archives/V7/i6/IRJET-V7I632.pdf" target="_blank">here</a>, for example), community programs, or prototypes for their business pitches (<a href="https://www.elektormagazine.com/news/webinar-rapid-prototyping-ble-android-apps-using-mit-app-inventor" target="_blank">here</a>, for example).  
+    </div>
+
+    <button class="accordion" id="can-i-install">Can I install my app on my phone permanently?</button>
+    <div class="panel" id="FAQinstall">
+      <p>For Android phones, you can install the apps you build as permanent apps on your phone or tablet right away. See instructions <a href="https://appinventor.mit.edu/explore/ai2/build" target="_blank">here</a>. For iPhones and iPads, you can build, package, and install iOS apps, but Apple makes the current process <a href="https://iosbuildservertest.appinventor.mit.edu/reference/other/build-ios-apps.html" target="_blank">costly and complex</a> because of its strict developer requirements. We've created a new App Inventor-friendly process for iOS that will be published soon!
+    </div>
+
+    <button class="accordion" id="who-is-behind">Who is behind MIT App Inventor?</button>
+    <div class="panel">
+      <p>A small team of dedicated researchers and students at the MIT Computer Science and Artificial Intelligence Lab (CSAIL) runs the platform day-to-day, 365 days a year — with the vital contribution of hundreds of App Inventor experts who volunteer through our power user and expert trainer community and contribute new features as well as help answer questions new app builders ask. 
+    </div>
+
+    <button class="accordion" id="how-is-mit">How is MIT App Inventor free? </button>
+    <div class="panel">
+      <p>The site is supported through grants, collaborations with educational organizations, and donations from . . . “coders like you.” <a href="/giving_to_App_Inventor.html" target="_blank">Please consider donating</a> to keep this free resource up and running for years to come.
+    </div>
+
+    <div class="display-text">Education Questions</div>
+
+    <button class="accordion" id="i-am-a">I am a teacher interested in incorporating App Inventor into my curriculum. For my grade 9-12 students, what resources, lesson plans, and curriculum materials that would be appropriate?</button>
+    <div class="panel">
+      <ul>
+        <li>If you are interested using App Inventor officially as course, you should look into the AP board certified <a href="https://www.mobilecsp.org/" target="_blank">Mobile CSP</a></li>
+        <li>Our own team's teaching materials (tutorials etc.) can be found <a href="https://appinventor.mit.edu/explore/teach" target="_blank">here</a></li>
+        <li>We have an <a href="https://appinventor.mit.edu/explore/become-an-appinventor-book" target="_blank">official book</a> you can look into and use in your classroom</li>
+        <li>On our <a href="https://www.youtube.com/@MITAppInventor" target="_blank">YouTube site</a> you can find many video tutorials, interviews, etc.</li>
+        <li>Students who participate in <a href="https://www.appinventorfoundation.org/appathons" target="_blank">our annual Appathons</a> can receive awards and participation certificates.</li>
+      </ul>
+    </div>
+    
+    <button class="accordion" id="can-i-teach">Can I teach MIT App Inventor without previous programming experience?</button>
+    <div class="panel">
+      <p>Yes, teachers who are new to coding often lead introductory coding classes and learn App Inventor with their students. We recommend that teachers follow one of the <a href="explore/hour-of-code" target="_blank"> Hour of Code</a> tutorials as preparation before using App Inventor in the classroom.
+      <p><a href="https://appinventor.mit.edu/explore/teach" target="_blank">Click here</a> for instructions on how to set up your classroom, a full set of curricula for App Inventor, tips on getting tech support from our community forum, YouTube videos, books, and more.
+      <p>Teachers with experience in teaching coding or computer science principles might find the <a href="https://mobile-csp.org" target="_blank"> AP Mobile Computer Science Principles</a> course useful. They might also consider participating in our annual <a href="explore/master-trainers" target="_blank"> Expert Trainers</a> course.
+    </div>
+
+    <button class="accordion" id="cell-phones-have">Cell phones have been banned in my school. Is there another way to use App Inventor to teach app coding? </button>
+    <div class="panel">
+      <p>Several options exist to teach app coding without an iPhone or Android phone in hand. If phones are prohibited in your classroom, students can use one of the methods below to view and test apps. Later, outside of class, they may want to install finished apps on their own devices or share their creations with others. (Learn more about <a href="/explore/ai2/share">sharing</a> and <a href="/explore/ai2/build">installing</a> apps.)</p>
+      <ul>
+        <li>
+          <b>Chromebook</b>
+          <ul>
+            <li>Students can use Chromebooks to view and live test apps while coding. They can program apps on one window of the Chromebook then switch to another window to test them. <a href="/support/chromebooks">Instructions here.</a></li>
+          </ul>
+        </li>
+        <li>
+          <b>iPad</b>
+          <ul>
+            <li><b>Computer and iPad.</b> We recommend students create their apps with App Inventor on any PC or Mac computer and test apps with the iPad. <a href="/explore/ai2/setup-device-wifi">Instructions here.</a></li>
+            <li><b>iPad only.</b> It is possible to <a href="https://www.youtube.com/watch?v=u0ry5xwtR9Q" target="_blank">code and test an app all within the same iPad</a>. However, coding on a touchscreen can be tricky. You may want to test this method yourself ahead of time.</li>
+          </ul>
+        </li>
+        <li>
+          <b>Android Tablet</b>
+          <ul>
+            <li><b>Computer and tablet.</b> Your school may allow Android tablets for academic use within class hours. We recommend purchasing enough devices for teams of 2-4 students. Students can program apps with any PC or Mac computer and test apps using tablets. <a href="/explore/ai2/setup-device-wifi">Instructions here.</a></li>
+            <li><b>Tablet only.</b> Just as with iPad, it is possible to program and test an app all on the same Android device. However, coding on a touchscreen can be tricky. You may want to test this method yourself ahead of time.</li>
+          </ul>
+        </li>
+        <li>
+          <b>Emulator</b>
+          <ul>
+            <li>We offer free emulator software that simulates a cell phone and runs on any Mac or PC computer. That way, students can program App Inventor in a web browser window and switch to an emulator window for live testing. This method does not allow apps to access some advanced features such as phone sensors and Bluetooth. <a href="/explore/ai2/setup-emulator">Instructions here.</a></li>
+          </ul>
+        </li>
+        <li>
+          <b>Mac with Apple Silicon</b>
+          <ul>
+            <li>Newer Mac computers run iPhone apps right on the desktop. In this case, students would program their apps in a browser window and switch to an App Inventor Companion window to test.</li>
+          </ul>
+        </li>
+      </ul>
+      <p>We recommend testing one of these methods with <a href="http://ai2.appinventor.mit.edu/?locale=en&repo=http://appinventor.mit.edu/yrtoolkit/yr/aiaFiles/hour_of_code/HourOfCode.asc" target="_blank">a simple tutorial</a> to see how coding and testing apps will work for your class.</p>
+      <p>You may also want to check whether your school’s policy bans all phones or just personal phones. It may be possible for students to use phones for educational purposes within your classroom. After all, part of the thrill of app-building is running your creations on your own phone!
+    </div>
+
+    <button class="accordion" id="how-can-my">How can my school/organization collaborate with MIT on App Inventor?</button>
+    <div class="panel">
+      <p>App Inventor is an open-source tool, so advanced high school and college students could help solve one of the open issues in <a href="https://github.com/mit-cml/appinventor-sources" target="_blank">our open-source repository</a>. Students aged 18 or older can also apply for <a href="https://community.appinventor.mit.edu/c/open-source-development/gsoc/26" target="_blank">Google Summer of Code projects</a> to work on MIT App Inventor.
+      <p>Teachers might consider participating in our annual <a href="explore/master-trainers" target="_blank">Expert Trainers</a> course.
+    </div>
+
+    <button class="accordion" id="my-school-district">My school district requires a Privacy Agreement before using any digital service. Will you sign it? </button>
+    <div class="panel">
+      <p>MIT provides App Inventor as a free educational platform developed through years of intense research efforts. It is not a commercial product. MIT cannot assume any legal liability on your privacy even though we make every reasonable effort to safeguard everyone's data. Please remember that (1)  we do not collect Personally Identifiable Information (PII), and (2) school districts use App Inventor for free without any contractual agreement with MIT. Learn more details in our Terms of Service, <a href="/about/termsofservice#schools" target="_blank">"Special Information for Schools"</a>.
+    </div>
+
+    <div class="display-text">Technical Questions</div>
+
+    <button class="accordion" id="what-should-i">What should I download?</button>
+    <div class="panel">
+      <p>To test your app while you code, download our free App Inventor Companion app (<a href="https://apple.co/30kwvP2" target="_blank">iOS</a> and <a href="https://play.google.com/store/apps/details?id=edu.mit.appinventor.aicompanion3&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" target="_blank">Android</a>) on your mobile device. 
+      <p>You can even test apps on a <a href="/explore/ai2/setup-emulator" target="_blank">computer-based emulator</a> without a phone or tablet.
+    </div>
+
+    <button class="accordion" id="what-are-the">What are the technical requirements?</button>
+    <div class="panel">
+      <p>MIT App Inventor supports Chrome, Firefox, and Safari web browsers on most laptops and desktops. Chromebooks, iPads, and Android tablets are also supported. For specifics, read our basic <a href="explore/content/system-requirements" target="_blank">System Requirements</a>.
+      <p>For IT departments with more in-depth technical questions about MIT App Inventor, please consult <a href="https://docs.google.com/document/d/1YO0P4u4z951We9AwndvSAkFkXPNt8yE8NVekdCQ2_gQ/edit?tab=t.0" target="_blank">Common Technical Questions about MIT App Inventor</a>.
+    </div>
+
+    <button class="accordion" id="where-is-your">Where is your site's Voluntary Product Accessibility Template (VPAT)?</button>
+    <div class="panel">
+      <p>You can find our 2025 VPAT document <a href="/assets/files/MIT_App_Inventor_Accessibility_Conformance_Report_2025.pdf" target="_blank">here</a>.
+    </div>
+
+    <button class="accordion" id="can-i-program">Can I program apps for iPhones and iPads?  </button>
+    <div class="panel">
+      <p>Yes. People have been creating iOS apps with App Inventor since early 2021. <a href="ios_tips.html" target="_blank">Here are all the tips and setup instructions for iOS users</a>. 
+    </div>
+
+    <button class="accordion" id="can-i-contact">Can I contact tech support? </button>
+    <div class="panel">
+      <p>MIT App Inventor will always be a free resource, and we do our best to address user questions and problems as quickly as possible. However, the best way to get a question answered is to post it in our <a href="https://community.appinventor.mit.edu/" target="_blank">community forum</a>. 
+    </div>
+
+    <button class="accordion" id="im-an-it">I'm an IT person at a school, and App Inventor just doesn't seem to work on our network. What now? </button>
+    <div class="panel">
+      <p>For IT professionals having difficulty using App Inventor on their networks, the problem may involved blocked ports or other connections. See our <a href="https://docs.google.com/document/d/1GMXO_GoCRj3052Pg93dzEzJ5sXido9Ul7Xrn6HYU6Xs/edit?tab=t.0" target="_blank">"Letter for IT Professionals in Schools for Using App Inventor"</a>.  
+    </div>
+
+    <button class="accordion" id="what-if-i">What if I logged in and all my projects are gone?</button>
+    <div class="panel">
+      <p>Projects not showing up is almost always because you are logged in to a different Google account address than the one you used to create the projects. App Inventor attaches projects to the primary email address associated with a Google account. 
+    </div>
+
+    <button class="accordion" id="how-do-i">How do I delete my account?</button>
+    <div class="panel">
+      <p>To delete your account, move all of your projects to the trash. Once your projects are in the trash, click on your email address  in the top right and select “Delete Account” from the dropdown menu.
+    </div>
+
+    <button class="accordion" id="do-i-have">Do I have to have a Google account to use MIT App Inventor? </button>
+    <div class="panel">
+      <p>No. Although having a Google name and password allows you to save projects in a convenient place you can access from anywhere on any computer, we know some users will want to remain anonymous. You can log into MIT App Inventor anonymously at this link – <a href="http://code.appinventor.mit.edu/" target="_blank">http://code.appinventor.mit.edu/</a>. Users can choose to "Continue Without An Account," and a randomly generated revisit code will be generated. If the user wants to return to the project later, they should copy and save that return code in a safe place because otherwise, projects created cannot be retrieved once the user has logged out.
+    </div>
+
+    <button class="accordion" id="what-info-do">What info do you keep on users?</button>
+    <div class="panel">
+      <p>App Inventor does not keep personally identifiable information (PII) nor try to figure out who you are based on your data. Your Google account details are retained only to allow you to keep your project files and only if you log in using a Google account. (You can also use our <a href="http://code.appinventor.mit.edu/" target="_blank">http://code.appinventor.mit.edu/</a> login described in the entry above — "Do I have to have a Google account to use MIT App Inventor?")
+      <p>More on this in our Terms of Service, under <a href="https://appinventor.mit.edu/about/termsofservice#information">"Information about You"</a>.</p>
+    </div>
+
+    <button class="accordion" id="can-i-get">Can I get involved in coding the App Inventor platform itself? </button>
+    <div class="panel">
+      <p>Our <a href="https://github.com/mit-cml/appinventor-sources" target="_blank"> open-source code</a> makes it easy to create a pull request on our public GitHub repository. Many of the components you see in App Inventor are the result of work by volunteer users and students around the world. 
+    </div>
+
+  </div>
+
+</div>
+<div class="footer background-color">
+  <div style="padding-left: 35%;"></div>
+  <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+  <div style="text-align: center;">
+    <div style="padding-top: 10%; "></div>
+  <h2>MIT App Inventor</h2>
+  <div style="padding: 5px;"></div>
+  <a href="https://raise.mit.edu" target="_blank"><img src="https://appinventor.mit.edu/images/RAISE_sub-brand_lockup_two-level_rgb_black-and-silver-gray.svg" style="width: 250px;" alt="RAISE logo"></a>
+  <div style="padding: 20px;"></div>
+</div>
+  
+  <div style="width: 450px; text-align: center;">
+    <div style="padding-top: 5%;"></div>
+  <a href="https://web.mit.edu" target="_blank"><img src="https://appinventor.mit.edu/images/landing_page_assets/logos/MIT-logo-gray-ltgray-72x38.svg" style="width: 200px; padding-left: 5px;" alt="MIT logo"></a><div style="padding: 5px;"></div>
+  &copy; 2012-2025 Massachusetts Institute of Technology
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="/images/cc80x15.png"></a><br>This work is licensed under a 
+  <a rel="license" class="footer_links" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+  <br><a class="footer_links" href="/about/termsofservice" target="_blank">Terms of Service and Privacy Policy</a>
+  <div style="padding: 15px;"></div>
+</div>
+
+  <div>
+    <div style="padding-top: 10%;"></div>
+  App Inventor Support: <a class="footer_links" href="https://community.appinventor.mit.edu" target="_blank">Community</a><br>
+  Other inquiries: <a class="footer_links" href="mailto:appinventor@mit.edu" target="_blank">Email</a><br>
+  GitHub: <a class="footer_links" href="https://github.com/mit-cml"  target="_blank">mit-cml</a><br>
+  Accessibility: <a class="footer_links" href="http://accessibility.mit.edu" target="_blank">accessibility.mit.edu</a><br>
+  <div style="padding: 5px;"></div>
+  <div style="padding-left: 30px;">
+  <a href="https://www.youtube.com/@MITAppInventor" target="_blank"><img src="https://appinventor.mit.edu/images/social_media/youtube.png" style="width: 40px; padding: 5px;" alt="youtube icon"></a>
+  <a href="https://www.instagram.com/mitappinventorofficial/" target="_blank"><img src="https://appinventor.mit.edu/images/social_media/instagram.png" style="width: 40px; padding: 5px;" alt="instaram icon"></a>
+  <a href="https://twitter.com/MITAppInventor" target="_blank"><img src="https://appinventor.mit.edu/images/social_media/twitter.png" style="width: 40px; padding: 5px;" alt="twitter icon"></a>
+  <a href="https://www.facebook.com/MITAppInventor" target="_blank"><img src="https://appinventor.mit.edu/images/social_media/facebook.png" style="width: 27px" alt="facebook icon"></a>
+  <a href="https://www.linkedin.com/company/appinventorfoundation" target="_blank"><img src="https://appinventor.mit.edu/images/social_media/linkedin.png" style="width: 37px; padding: 5px; margin-bottom: 3px;"  alt="linkedin icon"></a>
+</div>
+</div>
+  </div>
+  <div style="padding-right: 35%;"></div>
+  <script src="https://appinventor.mit.edu/js/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://appinventor.mit.edu/js/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://appinventor.mit.edu/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script async src="https://appinventor.mit.edu/js/widgets.js"></script>
+  
+  </div>
+</div>
+  </body>
+</html>
